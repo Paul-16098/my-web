@@ -11,7 +11,6 @@ OUTPUT_SUB: dict[re.Pattern[str], str] = {
         '<ul>\\s*<li><em><a href="([^"]+)">([^<>]*)</a></em></li>\\s*</ul>',
         re.I,
     ): r'<ul><li><a href="\1" style="color: black;text-decoration-line: none;"><cite>\2</cite></a></li></ul>',
-    re.compile('\n<li><a href="404.html">404</a></li>'): "",
 }
 
 
@@ -24,7 +23,6 @@ def md2html(
             if f.read().startswith("<!-- TOC -->"):
                 return (1, input)
 
-    TOCList.append(output)
     os.system(
         f'showdown makehtml --flavor="github" -i {root + input} -o {root + output} 1>nul'
     )
@@ -39,12 +37,12 @@ def md2html(
     return 0
 
 
-def g_toc(TOCList, index: str):
+def MakeToc(TOCList: list[str], index: str):
     print("f:", root + index)
     TOCStrList: list[str] = ["<!-- TOC -->", "# toc\n"]
     for toc in TOCList:
-        TOCStrList.append(f"- [{toc[0:-5]}]({toc})")
-    toc = "\n".join(TOCStrList) + "\n\n---\n"
+        TOCStrList.append(f"- [{'.'.join(toc.split('.')[0:-1])}]({toc})")
+    toc = "\n".join(TOCStrList)
     with open(root + index, "wt", encoding="utf-8") as f:
         f.write(toc)
 
@@ -58,9 +56,7 @@ class MyEventHandler(FileSystemEventHandler):
         if event.event_type in {"modified", "created"}:
             print(event.event_type, ": ", p)
             if p.endswith(".md"):
-                observer.unschedule_all()
-                main()
-                observer.schedule(event_handler, root, recursive=True)
+                set_observer()
         else:
             print(event.event_type, "?: ", p)
 
@@ -80,17 +76,34 @@ def main():
                 index = index_path
             case _:
                 print("W: r=U")
-    if index is not None:
-        g_toc(TOCList, index)
-        md2html(index, TOCList, True)
     for input in glob("./_public/**.*"):
-        dinput = input.replace("./_public\\", "./public\\")
+        dinput = input.replace("./_public\\", ".\\public\\")
         print(input, "=>", dinput)
         os.link(input, dinput)
+    for input in glob("**.*", root_dir=root):
+        for ext in (".html", ".txt"):
+            c = False
+            for name in ("index.md", "404.html"):
+                if input.startswith(name):
+                    c = True
+            if c:
+                continue
+            if input.endswith(ext):
+                TOCList.append(input)
+    if index is not None:
+        MakeToc(TOCList, index)
+        md2html(index, TOCList, True)
 
 
 with open("./html-t.html", "rt", encoding="utf-8") as f:
     html_t = f.read()
+
+
+def set_observer():
+    observer.unschedule_all()
+    main()
+    observer.schedule(event_handler, root, recursive=True)
+
 
 main()
 event_handler = MyEventHandler()

@@ -1,8 +1,7 @@
 public/
 !public/404.md
-!public/404.html
+!public/test.md
 
-_public/github.less
 _public/github.css
 
 .venv

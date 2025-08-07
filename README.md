@@ -1,4 +1,6 @@
-# use
+# my-web
+
+## use
 
 1. `pip install -r .\pyproject.toml` or
    `uv pip install -r .\pyproject.toml`
@@ -13,3 +15,8 @@
 
 5. `simple-http-server --ip 127.0.0.1 -i --nocache --try-file ./404.html` or
    `vscode tasks: start server`
+
+## cofg
+
+if `./public/index.md` exists and start with `<!-- TOC -->`
+the `./md2html.py` will make toc.
