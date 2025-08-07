@@ -1,0 +1,4 @@
+public/
+_public/
+.venv
+node_modules

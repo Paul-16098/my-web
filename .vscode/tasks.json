@@ -1,0 +1,50 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "process",
+      "command": "simple-http-server",
+      "args": [
+        "--ip",
+        "127.0.0.1",
+        "-i",
+        "--nocache",
+        "--try-file",
+        "./404.html"
+      ],
+      "isBackground": true,
+      "icon": {
+        "id": "server"
+      },
+      "label": "start server",
+      "group": "none",
+      "presentation": {
+        "focus": false,
+        "clear": true,
+        "close": true
+      },
+      "runOptions": {
+        "instanceLimit": 1,
+        "instancePolicy": "terminateOldest"
+      },
+      "problemMatcher": [],
+      "options": {
+        "cwd": "./public/"
+      }
+    },
+    {
+      "type": "process",
+      "label": "md2html",
+      "command": "uv",
+      "args": ["run", "./md2html.py"],
+      "problemMatcher": ["$python"],
+      "group": "build",
+      "isBackground": true,
+      "runOptions": {
+        "instanceLimit": 1,
+        "instancePolicy": "terminateOldest",
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}

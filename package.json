@@ -1,0 +1,8 @@
+{
+  "name": "my-web",
+  "dependencies": {
+    "showdown": "^2.1.0"
+  },
+  "author": "Paul-16098",
+  "version": "1.0.0"
+}
