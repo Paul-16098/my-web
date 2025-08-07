@@ -2,5 +2,8 @@ public/
 !public/404.md
 !public/404.html
 
+_public/github.less
+_public/github.css
+
 .venv
 node_modules
