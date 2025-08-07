@@ -10,7 +10,8 @@ OUTPUT_SUB: dict[re.Pattern[str], str] = {
     re.compile(
         '<ul>\\s*<li><em><a href="([^"]+)">([^<>]*)</a></em></li>\\s*</ul>',
         re.I,
-    ): r'<ul><li><a href="\1" style="color: black;text-decoration-line: none;"><cite>\2</cite></a></li></ul>'
+    ): r'<ul><li><a href="\1" style="color: black;text-decoration-line: none;"><cite>\2</cite></a></li></ul>',
+    re.compile('\n<li><a href="404.html">404</a></li>'): "",
 }
 
 
@@ -34,9 +35,7 @@ def md2html(
         for p, s in OUTPUT_SUB.items():
             new_output_raw = p.sub(s, new_output_raw)
 
-        f.write(
-            f"<!DOCTYPE html><html><head><meta charset='utf-8' /><link rel='stylesheet' type='text/css' media='screen' href='main.css'></head><body>{new_output_raw}</body></html>"
-        )
+        f.write(html_t.replace("{}", new_output_raw))
     return 0
 
 
@@ -89,6 +88,9 @@ def main():
         print(input, "=>", dinput)
         os.link(input, dinput)
 
+
+with open("./html-t.html", "rt", encoding="utf-8") as f:
+    html_t = f.read()
 
 main()
 event_handler = MyEventHandler()

@@ -1,4 +1,6 @@
 public/
-_public/
+!public/404.md
+!public/404.html
+
 .venv
 node_modules
