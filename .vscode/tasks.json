@@ -42,8 +42,7 @@
       "isBackground": true,
       "runOptions": {
         "instanceLimit": 1,
-        "instancePolicy": "terminateOldest",
-        "runOn": "folderOpen"
+        "instancePolicy": "terminateOldest"
       }
     }
   ]
