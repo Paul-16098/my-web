@@ -23,6 +23,12 @@ the `./md2html.py` will make toc.
 
 ## todo
 
-- [x] github note
-- [x] github important
-- [ ] github warn
+- [x] [github markdown extension alerts](https://github.blog/changelog/2023-12-14-new-markdown-extension-alerts-provide-distinctive-styling-for-significant-content/)
+
+## test
+
+[the test md file](public/test.md) | [the test html file](public/test.html)
+
+## note
+
+the `./_public/github.css` form https://github.com/sindresorhus/github-markdown-css

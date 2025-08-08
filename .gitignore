@@ -1,8 +1,9 @@
-public/
+public/*
 !public/404.md
 !public/test.md
+!public/test.html
 
-_public/github.css
+_public/*
 
 .venv
 node_modules
