@@ -45,16 +45,17 @@ index 05bd665..3430a5a 100644
 
 > b
 
->> c
-> d
+> > c
+> > d
 
 ---
 
 > [!note]
-> the note
+> note1
+> note2
 
 ---
 
-> [!warn]
-> warn
-> warn2
+> [!important]
+> important1
+> important2
