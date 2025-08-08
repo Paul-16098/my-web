@@ -59,3 +59,9 @@ index 05bd665..3430a5a 100644
 > [!important]
 > important1
 > important2
+
+---
+
+> [!warning]
+> warn1
+> warn2

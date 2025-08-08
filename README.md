@@ -20,3 +20,9 @@
 
 if `./public/index.md` exists and start with `<!-- TOC -->`
 the `./md2html.py` will make toc.
+
+## todo
+
+- [x] github note
+- [x] github important
+- [ ] github warn
