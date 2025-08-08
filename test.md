@@ -50,18 +50,25 @@ index 05bd665..3430a5a 100644
 
 ---
 
-> [!note]
-> note1
-> note2
+> [!NOTE]  
+> Highlights information that users should take into account, even when skimming.
 
 ---
 
-> [!important]
-> important1
-> important2
+> [!TIP]
+> Optional information to help a user be more successful.
 
 ---
 
-> [!warning]
-> warn1
-> warn2
+> [!IMPORTANT]  
+> Crucial information necessary for users to succeed.
+
+---
+
+> [!WARNING]  
+> Critical content demanding immediate user attention due to potential risks.
+
+---
+
+> [!CAUTION]
+> Negative potential consequences of an action.
